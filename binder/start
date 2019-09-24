@@ -8,6 +8,7 @@ python setup.py develop
 cd ~
 git clone https://github.com/AllenInstitute/multipatch_analysis
 cd multipatch_analysis
+git checkout notebooks
 python setup.py develop
 
 

@@ -6,11 +6,13 @@ cd neuroanalysis
 python setup.py develop
 
 cd ~
-git clone https://github.com/AllenInstitute/multipatch_analysis
+git clone https://github.com/campagnola/multipatch_analysis
 cd multipatch_analysis
 git fetch origin
 git checkout notebooks
 python setup.py develop
 
+cd doc
+ln -s ~/*.sqlite .
 
 exec "$@"

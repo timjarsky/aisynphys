@@ -12,7 +12,4 @@ git fetch origin
 git checkout notebooks
 python setup.py develop
 
-cd doc
-ln -s ~/*.sqlite .
-
 exec "$@"

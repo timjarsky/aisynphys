@@ -1,6 +1,6 @@
 #!/bin/bash
 
 cd ~
-mkdir ai_synphys_cache
-cd ai_synphys_cache
-wget http://luke.campagnola.me/tmp/synphys_current_small.sqlite
+mkdir -p ai_synphys_cache/database
+cd ai_synphys_cache/database
+wget http://luke.campagnola.me/tmp/synphys_current_small.sqlite -O synphys_r1.0_2019-08-29_small.sqlite

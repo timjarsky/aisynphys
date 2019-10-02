@@ -1,14 +1,9 @@
 #!/bin/bash
 
-cd ~
-git clone https://github.com/AllenInstitute/neuroanalysis
-cd neuroanalysis
-python setup.py develop
+cd ~/neuroanalysis
+git pull
 
-cd ~
-git clone https://github.com/AllenInstitute/aisynphys
-cd aisynphys
-git fetch origin
-python setup.py develop
+cd ~/aisynphys
+git pull
 
 exec "$@"

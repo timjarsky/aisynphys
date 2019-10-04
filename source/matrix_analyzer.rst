@@ -103,27 +103,27 @@ The **Scatter Plot** panel can operate somewhat independently from the Matrix Pa
 
 For each panel, the top section lists the metrics available for plotting. Clicking on one, such as PSP Amplitude, will plot this metric along the x-axis with a pseudo-scatter along the y-axis.
 
-..image:: images/scatter1.*
+.. image:: images/scatter1.*
 
 Filters and colorization can be added on top of the scatter plot. For example you could see how PSC Amplitude compares to PSP Ampltide by adding a **ColorMap** for PSC Amplitude. These color maps act the same as those for the Matrix Display.
 
-..image:: images/scatter2.*
+.. image:: images/scatter2.*
 
 The displayed data can also be filtered by adding a **Data Filter**. For example, you can filter for only negatiave PSP Amplitudes.
 
-..image:: images/scatter3.*
+.. image:: images/scatter3.*
 
 An easier way to visualize how PSP and PSC amplitude correspond may be to plot these against each other. Any two metrics can be plotted in this way by holding Ctrl while selecting the two metrics. The first selected metric will be plotted on the x-axis and the second along the y-axis.
 
-..image:: images/scatter4.*
+.. image:: images/scatter4.*
 
 The Scatter Plots interact with the Matrix Display in a similar way to the Histogram and TSeries. Clicking on an element will highlight that element in both scatter plot panels.
 
-..image:: images/scatter5.*
+.. image:: images/scatter5.*
 
 Additionally, individual points in each panel are clickable. More information about the selected element or pair is printed to the console.
 
-..image:: images/scatter6.*
+.. image:: images/scatter6.*
 
 --------------
 Distance Plot
@@ -135,7 +135,7 @@ The **Distance Binning Window** is an editable field in which you can vary the w
 
 The scatter plot shows the distance for probed pairs in the upper part and connected pairs in the lower part. This is only shown when an element is selected and corresponds to the distance vs connection probability relationship shown in the plot below. The lighter background shade is the 95% confidence interval. The grey line is the distance vs connection probability for **All Connection Classes** in the Matrix.
 
-..image:: images/distance.*
+.. image:: images/distance.*
 
 .. _appendix
 ========

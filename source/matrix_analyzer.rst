@@ -181,6 +181,8 @@ Similar to aCSF, multiple pipette internal solutions were used in these experime
 
 **Cell Classes**
 
+*Define layer by:* - The layer designation of a cell can be definied by the layer targeted during the experiment (target layer) or by the annotated layer from DAPI staining post hoc. See our `webpage <https://portal.brain-map.org/explore/connectivity/synaptic-physiology/synaptic-physiology-experiment-methods/cell-classification>`_ for more information about layer classification.
+
 *All Transgenic Classes* – This class shows all of the transgenic classes organized by layer. Within each layer is 1-2 excitatory subclasses and the 3 major inhibitory subclasses, Pv, Sst, and Vip. It is best used with Mouse projects.
 
 *Excitatory Transgenic Classes* – This class will show exclusively the excitatory transgenic subclasses. Because layer is a part of this class definition this matrix is also organized by layer. It can be combined with Inhibitory Transgenic Classes or Inhibitory Transgenic Classes by layer and is best used with Mouse projects.

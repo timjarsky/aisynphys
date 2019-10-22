@@ -9,9 +9,14 @@ Welcome to the Synaptic Physiology Matrix Analyzer. This interactive tool will a
 Getting Started
 ===============
 * Follow the instructions to setup an Anaconda environment found :ref:`here <installation>`. 
+* Once you have your environment created, open an Anaconda prompt and activate the environment::
+
+    conda activate aisynphys
+
 * Run the Matrix Analyzer in an Anaconda prompt::
 
-      python tools\matrix_analyzer.py --db-version=synphys_r1.0_2019-08-29_small.sqlite
+    cd aisynphys
+    python tools\matrix_analyzer.py --db-version=synphys_r1.0_2019-08-29_small.sqlite
 
 =========================
 About the Matrix Analyzer

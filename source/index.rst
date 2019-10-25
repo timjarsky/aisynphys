@@ -16,6 +16,7 @@ The `main code repository <https://github.com/alleninstitute/aisynphys>`_ and `d
     introduction
     installation
     interactive_tools
+    dataset
     developer_guide
     api_reference
 

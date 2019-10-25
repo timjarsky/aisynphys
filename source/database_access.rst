@@ -9,20 +9,12 @@ Database Access
 - Short description of DB classes
 - Example queries
 
-.. automodule:: multipatch_analysis.database.SynphysDatabase
-    :members:
-    :show-inheritance:
-
-.. automodule:: multipatch_analysis.database.Database
-    :members:
-    :show-inheritance:
-
 ===============
 Database Schema
 ===============
 
 The Synaptic Physiology Dataset is organized in a Postgres Database and we use SQLAlchemy to interact with the database in Python.
-The database is a relational one and it is important to understand what the relationships are in the database so that you can navigate to your data of interest. The full database schema can be found `here <>`_ but we'll point out some important relationships when getting started. Relationships can be 1-to-1 or 1-to-many. The database heirarchy somewhat follows that of the experiment and analyses.
+The database is a relational one and it is important to understand what the relationships are in the database so that you can navigate to your data of interest. The full database schema can be found :ref:`here <dataset>` but we'll point out some important relationships when getting started. Relationships can be 1-to-1 or 1-to-many. The database heirarchy somewhat follows that of the experiment and analyses.
 
 * The **slice** table is the top-most table in the database and thus contains much of the metadata one might be interested in, such as species, age, etc. 
 * Multiple entries in the **experiment** table can relate to a single *slice*.

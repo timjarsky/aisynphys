@@ -24,7 +24,7 @@ copyright = u'2018, Allen Institute Synaptic Physiology'
 author = u'Allen Institute Synaptic Physiology'
 
 # The short X.Y version
-version = u''
+version = u'1.0'
 # The full version, including alpha/beta/rc tags
 release = u''
 
@@ -43,6 +43,7 @@ extensions = [
     'sphinx.ext.viewcode',
     'numpydoc',
     'sphinx_rtd_theme',
+    'aisynphys.database.schema',
 ]
 
 # Add any paths that contain templates here, relative to this directory.

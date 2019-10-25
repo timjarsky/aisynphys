@@ -7,6 +7,7 @@ API Reference
     :maxdepth: 2
     :caption: Contents:
 
-    database
+    api_database
+    api_schema    
     analysis
     raw_data_model

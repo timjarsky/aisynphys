@@ -23,11 +23,13 @@ Due to the large sqlite and HDF5 file sizes, we recommend downloading these file
 
 
 Relational Database Tables
-==========================
+--------------------------
 
 Our relational database structure reflects the hierarchical arrangement described above plus several tables that carry data associated with each level:
 
-.. image:: images/synphys_15_simple.svg
+.. figure:: images/synphys_15_simple.svg
    :width: 1000px
+
+   Most commonly used subset of tables in the database. Click for a larger / clickable version.
 
 The figure above describes a subset of the tables present in our database; for a full description of tables and columns, see the :ref:`database schema API documentation <api_schema>`.

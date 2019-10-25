@@ -1,10 +1,10 @@
+.. currentmodule:: aisynphys.database
+
 Database Access Classes
 =======================
 
-.. automodule:: aisynphys.database.SynphysDatabase
-    :members:
-    :show-inheritance:
+.. autoclass:: aisynphys.database.SynphysDatabase
+   :members:
 
-.. automodule:: aisynphys.database.Database
-    :members:
-    :show-inheritance:
+.. autoclass:: aisynphys.database.Database
+   :members:

@@ -43,8 +43,10 @@ extensions = [
     'sphinx.ext.viewcode',
     'numpydoc',
     'sphinx_rtd_theme',
-    'aisynphys.database.schema',
 ]
+
+numpydoc_show_class_members = False
+numpydoc_show_inherited_class_members = False
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

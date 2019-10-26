@@ -1,4 +1,6 @@
 Raw Data Model
 ==============
 
-Used for reading structures from original sources -- HDF5, images, metadata files, ...
+[coming soon]
+
+The raw data model is used for reading structures from the original HDF5 files. 

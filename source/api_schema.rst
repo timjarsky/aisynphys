@@ -3,7 +3,7 @@
 Database Schema
 ===============
 
-The synaptic physiology database is provided as sqlite files that can be queried using many relational database tools. Although it is possible to read this dataset using standard SQL queries, we also provide an sqlalchemy model provides a richer interface for interacting with the database. The API reference below is derived from the sqlalchemy model classes, but also doubles as a description of the relational database schema.
+The synaptic physiology database is provided as sqlite files that can be queried using many relational database tools. Although it is possible to read this dataset using standard SQL queries, we also provide an sqlalchemy model that implements a richer interface to the database. The API reference below is derived from the sqlalchemy model classes, but also doubles as a description of the relational database schema.
 
 
 Slice

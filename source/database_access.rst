@@ -3,43 +3,95 @@
 Database Access
 ===============
 
-- We use sqlalchemy to handle database access
-- Tested with postgres and sqlite
-- Link to DB schema info
-- Short description of DB classes
-- Example queries
+The synaptic physiology dataset is implemented as a relational database derived from HDF5 (NWBv1) formatted patch clamp recording data. Although it is possible to access the database using standard SQL queries, we also provide an sqlalchemy model that implements a richer interface to the database. The documentation below provides examples of database access that assume some basic understanding of relational databases and the sqlalchemy ORM.
 
-===============
-Database Schema
-===============
-
-The Synaptic Physiology Dataset is organized in a Postgres Database and we use SQLAlchemy to interact with the database in Python.
-The database is a relational one and it is important to understand what the relationships are in the database so that you can navigate to your data of interest. The full database schema can be found :ref:`here <dataset>` but we'll point out some important relationships when getting started. Relationships can be 1-to-1 or 1-to-many. The database heirarchy somewhat follows that of the experiment and analyses.
-
-* The **slice** table is the top-most table in the database and thus contains much of the metadata one might be interested in, such as species, age, etc. 
-* Multiple entries in the **experiment** table can relate to a single *slice*.
-* The **pair** table is another important one and sits in the middle of the schema. This table will likely be your point of entry for any analyses as it is for many of the ones we provide.
+.. seealso::
     
-    * A *pair* entry contains a relation to the pre- and postsynaptic cell and whether there is a synapse, among other attributes
-    * The pair table also links directly to several tables that contain data such as **synapse**, **resting_state_fit**, and **dynamics**.
+    * :ref:`Synaptic Physiology Dataset Structure <dataset_structure>`
+    * `SQLAlchemy query API <https://docs.sqlalchemy.org/en/13/orm/query.html>`_
+    * `SQLAlchemy object relational tutorial <https://docs.sqlalchemy.org/en/13/orm/tutorial.html>`_
 
-=====================
-Querying the Database
-=====================
 
-The `SQLAlchemy query API <https://docs.sqlalchemy.org/en/13/orm/query.html>`_ is an excellent resource for writing queries in Python.
+Loading a database version
+--------------------------
 
-**Database Class**
+The synaptic physiology database can be loaded using :func:`SynphysDatabase.load_version() <aisynphys.database.SynphysDatabase.load_version>`::
 
-The Database Class is a relational database with sqlalchemy interaction. This class has methods for managing a database and interacting with a database, for instance making or droping tables, querying, and session handling. The Database Class is merely a scaffold, the schema for the database is implemented outside of this class
+    from aisynphys.database import SynphysDatabase
+    db = SynphysDatabase.load_version('synphys_r1.0_2019-08-29_small.sqlite')
 
-**SynphysDatabase Class**
+This method will take care of downloading and caching the requested database file. If the download is interrupted, it can be automatically resumed by running the function again. The object returned is a :class:`SynphysDatabase <aisynphys.database.SynphysDatabase>` instance that serves as the starting point for all subsequent data access. 
 
-The SynphysDatabase Class is a subclass of Database and includes helper methods for interacting with the Synpatic Physiology data specifically. We'll go through a couple of these methods here:
 
-*pair_query()*
+.. note::
+    
+    * Get a list of all available DB versions with :func:`SynphysDatabase.list_versions() <aisynphys.database.SynphysDatabase.load_version>`
+    * Define the location where DB files are downloaded and cached using::
 
-This method allows you to query the SynphysDatabase for cell pairs and specify a variety of filtering criteria. It handles all of the relevant joins across the tables of the database and returns a query object. For example, if you were interested in knowing how many excitatory synapses exist in the mouse your pair_query would look like::
+          aisynphys.config.cache_path = "path/to/cache_files"
 
-    pair_query(synapse_type='ex', species='mouse')
 
+Querying pairs from the database
+--------------------------------
+
+The most common database queries begin by searching for a set of :class:`Pair <aisynphys.database.schema.Pair>` records. The :func:`SynphysDatabase.pair_query <aisynphys.database.SynphysDatabase.pair_query>` method provides a simple interface for constructing this type of query::
+
+    # a query that retrieves all pairs from mouse projects
+    query = db.pair_query(project_name=db.mouse_projects)
+
+    # a query that retrieves all pairs from human projects 
+    # that are connected by a chemical synapse
+    query = db.pair_query(project_name=db.human_projects, synapse=True)
+
+    # a query that retrieves all chemical synapses from mouse projects
+    # where the postsynaptic cell is inhibitory
+    from aisynphys.cell_class import CellClass
+    inhibitory_class = CellClass(cre_type=('pvalb', 'sst', 'vip'))
+    query = db.pair_query(project_name=db.mouse_projects, synapse=True, 
+                          post_cell_class=inhibitory_class)
+
+The objects returned are `SQLALchemy query objects <https://docs.sqlalchemy.org/en/13/orm/query.html#the-query-object>`_ that can be used to retrieve query results::
+
+    # return a list of all results from the query
+    pairs = query.all()
+
+[more on this topic coming soon..]
+
+
+.. seealso::
+    
+    * `Example connectivity notebook <https://nbviewer.jupyter.org/github/AllenInstitute/aisynphys/blob/documentation/connectivity.ipynb>`_
+    * `Example kinetics notebook <https://nbviewer.jupyter.org/github/AllenInstitute/aisynphys/blob/documentation/synaptic_kinetics.ipynb>`_
+    * `Example short-term plasticity notebook <https://nbviewer.jupyter.org/github/AllenInstitute/aisynphys/blob/documentation/short_term_plasticity.ipynb>`_
+    
+
+General database queries
+------------------------
+
+To construct more general queries, we provide access to SQLAlchemy Session and Mapping classes. Note that all Mapping classes described in the :ref:`database schema <api_schema>` can be accessed as attributes of the :class:`SynphysDatabase <aisynphys.database.SynphysDatabase>` instance::
+
+    # load up a database
+    from aisynphys.database import SynphysDatabase
+    db = SynphysDatabase.load_version('synphys_r1.0_2019-08-29_small.sqlite')
+
+    # create an SQLAlchemy session
+    session = db.session()
+
+    # build a query to select all mouse experiments
+    query = session.query(db.Experiment).join(db.Slice).filter(db.Slice.species=='mouse')
+
+    # retrieve the list of experiments
+    expts = query.all()
+
+    # from the first experiment returned, print a list of cells and their transgenic type:
+    print("Frst experiment returned:", expts[0])
+    for cell in expts[0].cells:
+        print("Cell %s cre type: %s" % (cell.ext_id, cell.cre_type))
+
+[more on this topic coming soon..]
+
+
+
+.. seealso::
+
+    * `Querying in the SQLAlchemy ORM tutorial <https://docs.sqlalchemy.org/en/13/orm/tutorial.html#querying>`_

@@ -8,3 +8,4 @@ In this section we highlight the components of the `aisynphys` API that are used
     :caption: Contents:
 
     database_access
+    raw_data_model

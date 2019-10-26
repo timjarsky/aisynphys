@@ -1,4 +1,4 @@
-.. _dataset:
+.. _dataset_structure:
 
 Dataset Structure
 =================

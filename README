@@ -1,0 +1,2 @@
+This branch contains download URLs for synphys data files; may be updated whenever download resources change.
+URLs are stored as a base64-encoded pickle string to thwart bot scraping.

@@ -1,6 +1,8 @@
 name: binder
 channels:
   - defaults
+  - conda-forge
+  - conda-forge/label/broken
 dependencies:
   - _libgcc_mutex=0.1=main
   - attrs=19.1.0=py37_1

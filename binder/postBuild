@@ -6,7 +6,7 @@ cd neuroanalysis
 python setup.py develop
 
 cd ~
-git clone https://github.com/AllenInstitute/aisynphys --recursive
+git clone https://github.com/AllenInstitute/aisynphys --branch=release --recursive
 cd aisynphys
 python setup.py develop
 

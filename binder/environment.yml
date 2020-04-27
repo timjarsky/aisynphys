@@ -9,6 +9,7 @@ dependencies:
   - matplotlib
   - pandas
   - scipy
+  - numba
   - pyyaml
   - scikit-image
   - scikit-learn
